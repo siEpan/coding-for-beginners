@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Coding for Beginners - Don't Panic, It's Just Text!</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #f9f7f4 0%, #fefdfb 100%);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Background Code Snippets */
+        .background-code {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .code-snippet {
+            position: absolute;
+            font-family: 'Courier New', monospace;
+            opacity: 0.08;
+            white-space: nowrap;
+        }
+
+        /* Main Container */
+        .main-content {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Title Section */
+        .title {
+            margin-bottom: 40px;
+            line-height: 1.2;
+        }
+
+        .title-line {
+            margin: 10px 0;
+        }
+
+        .title-line-1 {
+            font-size: 24px;
+            font-weight: 500;
+            color: #D4A574;
+        }
+
+        .title-line-2 {
+            font-size: 72px;
+            font-weight: 900;
+            color: #4B3B8C;
+            letter-spacing: -2px;
+        }
+
+        .title-line-3 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #E63B7D;
+        }
+
+        .title-line-4 {
+            font-size: 48px;
+            font-weight: 700;
+            color: #00BCD4;
+        }
+
+        /* Tagline Section */
+        .tagline {
+            margin-bottom: 60px;
+            max-width: 700px;
+        }
+
+        .tagline-line-1 {
+            font-size: 18px;
+            font-weight: 700;
+            color: #3A3A3A;
+            margin-bottom: 8px;
+            font-family: 'Segoe UI', sans-serif;
+        }
+
+        .tagline-line-2 {
+            font-size: 16px;
+            font-weight: 400;
+            color: #3A3A3A;
+            font-family: 'Courier New', monospace;
+        }
+
+        /* Buttons Section */
+        .buttons {
+            display: flex;
+            gap: 30px;
+            margin-bottom: 80px;
+            flex-wrap: wrap;
+            justify-content: center;
+        }
+
+        .btn {
+            padding: 14px 40px;
+            font-size: 16px;
+            font-weight: 600;
+            letter-spacing: 1px;
+            cursor: pointer;
+            border: 2px solid;
+            border-radius: 4px;
+            transition: all 0.3s ease;
+            background: transparent;
+            font-family: 'Segoe UI', sans-serif;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+        }
+
+        .btn-about {
+            color: #3A3A3A;
+            border-color: #3A3A3A;
+        }
+
+        .btn-about:hover {
+            background: #f0f0f0;
+            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
+            transform: translateY(-2px);
+        }
+
+        .btn-play {
+            color: white;
+            background: #E63B7D;
+            border-color: #E63B7D;
+        }
+
+        .btn-play:hover {
+            background: #d92968;
+            border-color: #d92968;
+            box-shadow: 0 6px 16px rgba(230, 59, 125, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
+            background: rgba(255, 255, 255, 0.5);
+        }
+
+        .footer-line {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* Modal/Popup Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.4);
+            animation: fadeIn 0.3s ease;
+        }
+
+        .modal.active {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        .modal-content {
+            background-color: white;
+            padding: 50px 40px;
+            border-radius: 12px;
+            max-width: 600px;
+            width: 90%;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            animation: slideUp 0.3s ease;
+            position: relative;
+        }
+
+        @keyframes slideUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .modal-tag {
+            font-family: 'Courier New', monospace;
+            color: #3A3A3A;
+            font-size: 14px;
+            font-weight: 600;
+            display: block;
+            margin-bottom: 20px;
+        }
+
+        .modal-text {
+            font-family: 'Segoe UI', sans-serif;
+            color: #3A3A3A;
+            font-size: 16px;
+            line-height: 1.8;
+            margin-bottom: 16px;
+        }
+
+        .modal-highlight {
+            color: #D4A574;
+            font-weight: 700;
+        }
+
+        .modal-close {
+            display: block;
+            text-align: center;
+            margin-top: 30px;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            color: #3A3A3A;
+            cursor: pointer;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+        }
+
+        .modal-close:hover {
+            color: #E63B7D;
+            text-decoration: underline;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .title-line-2 {
+                font-size: 48px;
+            }
+
+            .title-line-3,
+            .title-line-4 {
+                font-size: 36px;
+            }
+
+            .tagline-line-1 {
+                font-size: 16px;
+            }
+
+            .tagline-line-2 {
+                font-size: 14px;
+            }
+
+            .buttons {
+                gap: 15px;
+            }
+
+            .btn {
+                padding: 12px 32px;
+                font-size: 14px;
+            }
+
+            .modal-content {
+                padding: 40px 30px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .title-line-1 {
+                font-size: 18px;
+            }
+
+            .title-line-2 {
+                font-size: 36px;
+            }
+
+            .title-line-3,
+            .title-line-4 {
+                font-size: 28px;
+            }
+
+            .tagline-line-1 {
+                font-size: 14px;
+            }
+
+            .tagline-line-2 {
+                font-size: 12px;
+            }
+
+            .buttons {
+                flex-direction: column;
+                gap: 15px;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 250px;
+            }
+
+            .modal-content {
+                padding: 30px 20px;
+                width: 95%;
+            }
+
+            .modal-text {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Background Code Snippets -->
+    <div class="background-code" id="backgroundCode"></div>
+
+    <!-- Main Content -->
+    <div class="main-content">
+        <!-- Title -->
+        <div class="title">
+            <div class="title-line title-line-1">Coding:</div>
+            <div class="title-line title-line-2">DON'T PANIC,</div>
+            <div class="title-line title-line-3">It's Just</div>
+            <div class="title-line title-line-4">Text!</div>
+        </div>
+
+        <!-- Tagline -->
+        <div class="tagline">
+            <div class="tagline-line-1">A starter kit to understand coding</div>
+            <div class="tagline-line-2">HTML is structure. CSS is style. JS is brain.</div>
+        </div>
+
+        <!-- Buttons -->
+        <div class="buttons">
+            <button class="btn btn-about" onclick="openAboutModal()">ABOUT</button>
+            <button class="btn btn-play" onclick="goToContents()">LET'S PLAY</button>
+        </div>
+    </div>
+
+    <!-- About Modal -->
+    <div id="aboutModal" class="modal">
+        <div class="modal-content">
+            <span class="modal-tag">&lt;about&gt;</span>
+            
+            <p class="modal-text">Made with curiosity by a first-time builder</p>
+            
+            <p class="modal-text">This site proves coding is just text with colors. No magic: just text + boxes + colors + brain.</p>
+            
+            <p class="modal-text">This site will let you play with HTML, CSS and JavaScript.</p>
+            
+            <p class="modal-text">Built for <span class="modal-highlight">#MyFirstWebsite</span> - a project on GOODWALL X GITHUB.</p>
+            
+            <span class="modal-tag">&lt;/about&gt;</span>
+            
+            <a class="modal-close" onclick="closeAboutModal()">close</a>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-line">#MyFirstWebsite</div>
+        <div class="footer-line">GOODWALL X GITHUB</div>
+        <div class="footer-line">siEpan</div>
+    </footer>
+
+    <script>
+        // Background Code Snippets
+        const codeSnippets = [
+            'console.log()',
+            '<h1>Hello</h1>',
+            'color: blue;',
+            'function() {}',
+            'background: #fff;',
+            '<div>Box</div>',
+            'const x = 5;',
+            'text-align: center;',
+            'if (true) {}',
+            '<span>Text</span>',
+            'margin: 10px;',
+            'return value;',
+            '<body></body>',
+            'display: flex;',
+            'alert("Hi!");',
+            'padding: 20px;',
+            '<p>Paragraph</p>',
+            'let name = "";',
+            'border: 1px;',
+            'querySelector()'
+        ];
+
+        const colors = ['#D4A574', '#4B3B8C', '#E63B7D', '#00BCD4', '#3A3A3A'];
+        const fontSizes = [12, 14, 16, 18, 20, 22];
+
+        function generateBackgroundCode() {
+            const container = document.getElementById('backgroundCode');
+            const positions = [
+                { top: '10%', left: '5%', rotate: -15 },
+                { top: '15%', left: '85%', rotate: 20 },
+                { top: '35%', left: '10%', rotate: 25 },
+                { top: '45%', left: '80%', rotate: -30 },
+                { top: '60%', left: '8%', rotate: 10 },
+                { top: '70%', left: '75%', rotate: -20 },
+                { top: '25%', left: '50%', rotate: 35 },
+                { top: '55%', left: '45%', rotate: -25 },
+                { top: '80%', left: '15%', rotate: 15 },
+                { top: '40%', left: '70%', rotate: -35 }
+            ];
+
+            positions.forEach((pos, index) => {
+                const snippet = document.createElement('div');
+                snippet.className = 'code-snippet';
+                snippet.textContent = codeSnippets[index % codeSnippets.length];
+                snippet.style.top = pos.top;
+                snippet.style.left = pos.left;
+                snippet.style.transform = `rotate(${pos.rotate}deg)`;
+                snippet.style.color = colors[Math.floor(Math.random() * colors.length)];
+                snippet.style.fontSize = fontSizes[Math.floor(Math.random() * fontSizes.length)] + 'px';
+                container.appendChild(snippet);
+            });
+        }
+
+        // Modal Functions
+        function openAboutModal() {
+            document.getElementById('aboutModal').classList.add('active');
+        }
+
+        function closeAboutModal() {
+            document.getElementById('aboutModal').classList.remove('active');
+        }
+
+        // Close modal when clicking outside
+        window.onclick = function(event) {
+            const modal = document.getElementById('aboutModal');
+            if (event.target === modal) {
+                modal.classList.remove('active');
+            }
+        }
+
+        // Navigate to Contents Page
+        function goToContents() {
+            window.location.href = 'contents.html';
+        }
+
+        // Initialize background code on page load
+        window.addEventListener('load', generateBackgroundCode);
+    </script>
+</body>
+</html>
