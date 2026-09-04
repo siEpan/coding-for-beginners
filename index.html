@@ -17,7 +17,6 @@
             min-height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: space-between;
             position: relative;
             overflow-x: hidden;
         }
@@ -36,8 +35,9 @@
         .code-snippet {
             position: absolute;
             font-family: 'Courier New', monospace;
-            opacity: 0.08;
+            opacity: 0.15;
             white-space: nowrap;
+            font-weight: bold;
         }
 
         /* Main Container */
@@ -46,9 +46,7 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 40px 20px;
+            padding: 60px 40px;
             position: relative;
             z-index: 1;
         }
@@ -56,42 +54,46 @@
         /* Title Section */
         .title {
             margin-bottom: 40px;
-            line-height: 1.2;
+            line-height: 1.1;
+            text-align: left;
+            max-width: 90%;
         }
 
         .title-line {
-            margin: 10px 0;
+            margin: 8px 0;
         }
 
         .title-line-1 {
-            font-size: 24px;
+            font-size: 32px;
             font-weight: 500;
             color: #D4A574;
         }
 
         .title-line-2 {
-            font-size: 72px;
+            font-size: 96px;
             font-weight: 900;
             color: #4B3B8C;
             letter-spacing: -2px;
+            line-height: 1;
         }
 
         .title-line-3 {
-            font-size: 48px;
+            font-size: 64px;
             font-weight: 700;
             color: #E63B7D;
         }
 
         .title-line-4 {
-            font-size: 48px;
+            font-size: 64px;
             font-weight: 700;
             color: #00BCD4;
         }
 
         /* Tagline Section */
         .tagline {
-            margin-bottom: 60px;
-            max-width: 700px;
+            margin-bottom: 40px;
+            max-width: 600px;
+            text-align: left;
         }
 
         .tagline-line-1 {
@@ -113,9 +115,12 @@
         .buttons {
             display: flex;
             gap: 30px;
-            margin-bottom: 80px;
             flex-wrap: wrap;
-            justify-content: center;
+            margin-top: auto;
+            padding-bottom: 30px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            position: relative;
+            z-index: 1;
         }
 
         .btn {
@@ -160,10 +165,9 @@
         footer {
             text-align: center;
             padding: 30px 20px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
             position: relative;
             z-index: 1;
-            background: rgba(255, 255, 255, 0.5);
+            background: rgba(255, 255, 255, 0.3);
         }
 
         .footer-line {
@@ -175,21 +179,20 @@
 
         /* Modal/Popup Styles */
         .modal {
-            display: none;
+            display: none !important;
             position: fixed;
             z-index: 1000;
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.4);
-            animation: fadeIn 0.3s ease;
+            background-color: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
         }
 
         .modal.active {
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            display: flex !important;
         }
 
         @keyframes fadeIn {
@@ -203,7 +206,7 @@
             border-radius: 12px;
             max-width: 600px;
             width: 90%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
             animation: slideUp 0.3s ease;
             position: relative;
         }
@@ -261,13 +264,17 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .title-line-1 {
+                font-size: 24px;
+            }
+
             .title-line-2 {
-                font-size: 48px;
+                font-size: 64px;
             }
 
             .title-line-3,
             .title-line-4 {
-                font-size: 36px;
+                font-size: 48px;
             }
 
             .tagline-line-1 {
@@ -293,17 +300,21 @@
         }
 
         @media (max-width: 480px) {
+            .main-content {
+                padding: 40px 20px;
+            }
+
             .title-line-1 {
                 font-size: 18px;
             }
 
             .title-line-2 {
-                font-size: 36px;
+                font-size: 44px;
             }
 
             .title-line-3,
             .title-line-4 {
-                font-size: 28px;
+                font-size: 36px;
             }
 
             .tagline-line-1 {
@@ -357,8 +368,8 @@
 
         <!-- Buttons -->
         <div class="buttons">
-            <button class="btn btn-about" onclick="openAboutModal()">ABOUT</button>
-            <button class="btn btn-play" onclick="goToContents()">LET'S PLAY</button>
+            <button class="btn btn-about" id="aboutBtn">ABOUT</button>
+            <button class="btn btn-play" id="playBtn">LET'S PLAY</button>
         </div>
     </div>
 
@@ -377,7 +388,7 @@
             
             <span class="modal-tag">&lt;/about&gt;</span>
             
-            <a class="modal-close" onclick="closeAboutModal()">close</a>
+            <a class="modal-close" id="closeBtn">close</a>
         </div>
     </div>
 
@@ -414,10 +425,12 @@
         ];
 
         const colors = ['#D4A574', '#4B3B8C', '#E63B7D', '#00BCD4', '#3A3A3A'];
-        const fontSizes = [12, 14, 16, 18, 20, 22];
+        const fontSizes = [14, 16, 18, 20, 22, 24];
 
         function generateBackgroundCode() {
             const container = document.getElementById('backgroundCode');
+            container.innerHTML = ''; // Clear existing snippets
+            
             const positions = [
                 { top: '10%', left: '5%', rotate: -15 },
                 { top: '15%', left: '85%', rotate: 20 },
@@ -446,28 +459,32 @@
 
         // Modal Functions
         function openAboutModal() {
-            document.getElementById('aboutModal').classList.add('active');
+            const modal = document.getElementById('aboutModal');
+            modal.classList.add('active');
         }
 
         function closeAboutModal() {
-            document.getElementById('aboutModal').classList.remove('active');
+            const modal = document.getElementById('aboutModal');
+            modal.classList.remove('active');
         }
+
+        // Button Event Listeners
+        document.getElementById('aboutBtn').addEventListener('click', openAboutModal);
+        document.getElementById('closeBtn').addEventListener('click', closeAboutModal);
+        document.getElementById('playBtn').addEventListener('click', function() {
+            window.location.href = 'contents.html';
+        });
 
         // Close modal when clicking outside
-        window.onclick = function(event) {
+        window.addEventListener('click', function(event) {
             const modal = document.getElementById('aboutModal');
             if (event.target === modal) {
-                modal.classList.remove('active');
+                closeAboutModal();
             }
-        }
-
-        // Navigate to Contents Page
-        function goToContents() {
-            window.location.href = 'contents.html';
-        }
+        });
 
         // Initialize background code on page load
-        window.addEventListener('load', generateBackgroundCode);
+        document.addEventListener('DOMContentLoaded', generateBackgroundCode);
     </script>
 </body>
 </html>
