@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Playground</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800;900&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family: 'Inter', sans-serif; background: #FFFFFF; }
+  .mono { font-family: 'JetBrains Mono', monospace; }
+  body::before { content:""; position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.035; background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E"); }
+</style>
+</head>
+<body class="relative min-h-screen flex flex-col">
+<header class="w-[90vw] mx-auto flex justify-between items-center py-4 relative z-10">
+  <div class="flex items-center gap-2">
+    <div class="w-9 h-9 rounded-full border border-[#E5E5E5] bg-white flex items-center justify-center mono text-[12px] font-bold text-black"><></div>
+    <span class="text-[13px] font-extrabold tracking-[-0.02em] text-[#111]">Coding: Don't Panic, It's Just Text.</span>
+  </div>
+</header>
+<div class="w-[90vw] h-[1px] bg-[#F0F0F0] mx-auto relative z-10"></div>
+<main class="w-[90vw] mx-auto max-w-[720px] relative z-10 pt-3 flex-1">
+
+
+
+
+  
+  <h1 class="mt-3 font-black tracking-[-0.06em] leading-[0.85] text-[#FF1493]" style="font-size: clamp(56px, 16vw, 96px);">The<br>Playground.</h1>
+  <p class="mono text-[13px] font-medium text-[#6B7280] mt-5">Pick a play. Each is just text.</p>
+
+  <div class="mt-10 flex flex-col gap-5 pb-10">
+    <!-- PLAY 01 -->
+    <a href="play-01.html" class="group block bg-white border border-[#EEEEEE] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-6 md:p-8 hover:border-[#ffc800]/50 transition">
+      <div class="mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#9CA3AF]">PLAY 01 — &lt;h1&gt;</div>
+      <div class="my-4 h-[1px] w-full bg-[#DDDDDD]"></div>
+      <div class="mt-2 font-extrabold text-[24px] tracking-[-0.02em] text-[#FFC800]">HTML - The Structure.</div>
+      <div class="mono text-[13px] font-medium text-[#6B7280] mt-2">boxes inside boxes</div>
+      <div class="mt-6 flex justify-between items-center">
+        <div class="w-2 h-2 rounded-full bg-[#E5E5E5] group-hover:bg-[#FFC800] transition"></div>
+        <span class="rounded-full bg-[#FF1493] text-white mono text-[11px] font-bold px-4 h-9 flex items-center shadow-[0_4px_20px_rgba(255,20,147,0.24)]">Open →</span>
+      </div>
+    </a>
+    <!-- PLAY 02 -->
+    <a href="play-02.html" class="group block bg-white border border-[#EEEEEE] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-6 md:p-8 hover:border-[#6366f1]/50 transition">
+      <div class="mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#9CA3AF]">PLAY 02 — { color: }</div>
+      <div class="my-4 h-[1px] w-full bg-[#DDDDDD]"></div>
+      <div class="mt-2 font-extrabold text-[24px] tracking-[-0.02em] text-[#6366f1]">CSS - The Style.</div>
+      <div class="mono text-[13px] font-medium text-[#6B7280] mt-2">colors, spacing, vibe.</div>
+      <div class="mt-6 flex justify-between items-center">
+        <div class="w-2 h-2 rounded-full bg-[#E5E5E5] group-hover:bg-[#6366f1] transition"></div>
+        <span class="rounded-full bg-[#FF1493] text-white mono text-[11px] font-bold px-4 h-9 flex items-center shadow-[0_4px_20px_rgba(255,20,147,0.24)]">Open →</span>
+      </div>
+    </a>
+    <!-- PLAY 03 -->
+    <a href="play-03.html" class="group block bg-white border border-[#EEEEEE] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-6 md:p-8 hover:border-[#00C2D1]/50 transition">
+      <div class="mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#9CA3AF]">PLAY 03 — makeItPop()</div>
+      <div class="my-4 h-[1px] w-full bg-[#DDDDDD]"></div>
+      <div class="mt-2 font-extrabold text-[24px] tracking-[-0.02em] text-[#00C2D1]">JavaScript - The Brain.</div>
+      <div class="mono text-[13px] font-medium text-[#6B7280] mt-2">click, pop, move</div>
+      <div class="mt-6 flex justify-between items-center">
+        <div class="w-2 h-2 rounded-full bg-[#E5E5E5] group-hover:bg-[#00C2D1] transition"></div>
+        <span class="rounded-full bg-[#FF1493] text-white mono text-[11px] font-bold px-4 h-9 flex items-center shadow-[0_4px_20px_rgba(255,20,147,0.24)]">Open →</span>
+      </div>
+    </a>
+<!-- PLAY 04 -->
+<div class="relative">
+  <!-- CARD -->
+  <button onclick="togglePlay4(event)" class="group text-left w-full block bg-white border border-[#EEEEEE] rounded-[24px] shadow-[0_8px_32px_rgba(0,0,0,0.06)] p-6 md:p-8 hover:border-[#FF1493]/50 transition">
+    <div class="mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#9CA3AF]">PLAY 04 - else:</div>
+    <div class="my-4 h-[1px] w-full bg-[#DDDDDD]"></div>
+    <div class="mt-2 font-extrabold text-[24px] tracking-[-0.02em] text-[#ff1493]">Python - The Logic.</div>
+    <div class="mono text-[13px] font-medium text-[#6B7280] mt-2">import, loop, build</div>
+    <div class="mt-6 flex justify-between items-center">
+      <div class="w-2 h-2 rounded-full bg-[#E5E5E5] group-hover:bg-[#FF1493] transition"></div>
+      <span class="rounded-full bg-[#E5E5E5] text-[#9CA3AF] mono text-[11px] font-bold px-4 h-9 flex items-center">Soon</span>
+    </div>
+  </button>
+
+  <!-- POPUP RIGHT ON THE CARD -->
+  <div id="play4Popup" class="hidden absolute inset-0 z-10 bg-white/30 backdrop-blur-[12px] border border-[#FF1493]/20 rounded-[24px] p-6 flex flex-col items-center justify-center text-center shadow-[0_8px_32px_rgba(0,0,0,0.08)]">
+    <div class="mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#FF1493]">coming soon</div>
+    <div class="mt-1 font-bold text-[16px] text-[#111]">Currently not available.</div>
+    <div class="mono text-[12px] text-[#6B7280] mt-1">Python is shedding it's skin!</div>
+    <button onclick="hidePlay4()" class="mt-4 rounded-full bg-[#ff1493] text-white mono text-[11px] font-bold px-4 h-8">Close</button>
+  </div>
+</div>
+  </div>
+
+  <div class="pb-10">
+    <a href="index.html" class="mono rounded-full border border-[#EEEEEE] bg-white px-6 h-11 flex items-center text-[12px] font-bold text-black shadow-[0_4px_20px_rgba(0,0,0,0.04)] w-fit">← Home</a>
+  </div>
+  <!-- POPUP -->
+<div id="soonPopup" class="hidden fixed inset-0 z-[100] flex items-center justify-center p-6">
+  <!-- backdrop -->
+  <div onclick="hidePopup()" class="absolute inset-0 bg-black/40 backdrop-blur-[6px]"></div>
+  <!-- box -->
+  <div class="relative w-full max-w-[340px] bg-white rounded-[24px] p-8 shadow-[0_16px_48px_rgba(0,0,0,0.16)] text-center">
+    <div class="mono text-[11px] font-bold uppercase tracking-[0.14em] text-[#9CA3AF]">PLAY 04</div>
+    <div class="mt-2 font-extrabold text-[22px] text-[#111]">Not available yet</div>
+    <div class="mono text-[13px] text-[#6B7280] mt-2 leading-[1.5]">Python - The Logic is still cooking. Check back soon!</div>
+    <button onclick="hidePopup()" class="mt-6 w-full rounded-full bg-[#FF1493] text-white mono text-[12px] font-bold h-11 flex items-center justify-center shadow-[0_4px_20px_rgba(255,20,147,0.24)]">
+      Got it
+    </button>
+  </div>
+</div>
+</main>
+
+<footer class="relative z-10 mt-auto pb-[18px]">
+  <div class="flex justify-center"><div class="w-[90vw] h-[1px] bg-[#F0F0F0]"></div></div>
+  <div class="w-[90vw] mx-auto pt-[14px] flex flex-col items-center gap-[8px] text-center">
+    <span class="inline-flex items-center rounded-[4px] bg-[#FFc800] px-[6px] py-[2px] text-[11px] font-black text-black">#MyFirstWebsite</span>
+    <div class="text-[#111] font-bold tracking-[0.08em] uppercase text-[10px]">GOODWALL X GITHUB</div>
+    <a href="https://github.com/siEpan" target="_blank" class="mono text-[10px] font-bold text-[#999] underline underline-offset-[3px]">@siEpan — github.com/siEpan</a>
+  </div>
+</footer>
+<script>
+  function togglePlay4(e){
+    e.stopPropagation();
+    document.getElementById('play4Popup').classList.remove('hidden');
+  }
+  function hidePlay4(){
+    document.getElementById('play4Popup').classList.add('hidden');
+  }
+  // click outside to close
+  document.addEventListener('click', () => hidePlay4());
+</script>
+</body>
+</html>

@@ -1,490 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Coding for Beginners - Don't Panic, It's Just Text!</title>
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html, body {
-            height: 100%;
-            width: 100%;
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f9f7f4 0%, #fefdfb 100%);
-            display: flex;
-            flex-direction: column;
-            position: relative;
-            overflow-x: hidden;
-        }
-
-        /* Background Code Snippets */
-        .background-code {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            pointer-events: none;
-            z-index: 0;
-            overflow: hidden;
-        }
-
-        .code-snippet {
-            position: absolute;
-            font-family: 'Courier New', monospace;
-            opacity: 0.2;
-            white-space: nowrap;
-            font-weight: bold;
-            font-size: 18px;
-            user-select: none;
-        }
-
-        /* Main Container */
-        .main-content {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 60px 40px;
-            position: relative;
-            z-index: 1;
-        }
-
-        /* Title Section */
-        .title {
-            margin-bottom: 40px;
-            line-height: 1.1;
-            text-align: left;
-            max-width: 90%;
-        }
-
-        .title-line {
-            margin: 8px 0;
-        }
-
-        .title-line-1 {
-            font-size: 32px;
-            font-weight: 500;
-            color: #D4A574;
-        }
-
-        .title-line-2 {
-            font-size: 96px;
-            font-weight: 900;
-            color: #4B3B8C;
-            letter-spacing: -2px;
-            line-height: 1;
-        }
-
-        .title-line-3 {
-            font-size: 64px;
-            font-weight: 700;
-            color: #E63B7D;
-        }
-
-        .title-line-4 {
-            font-size: 64px;
-            font-weight: 700;
-            color: #00BCD4;
-        }
-
-        /* Tagline Section */
-        .tagline {
-            margin-bottom: 40px;
-            max-width: 600px;
-            text-align: left;
-        }
-
-        .tagline-line-1 {
-            font-size: 18px;
-            font-weight: 700;
-            color: #3A3A3A;
-            margin-bottom: 8px;
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .tagline-line-2 {
-            font-size: 16px;
-            font-weight: 400;
-            color: #3A3A3A;
-            font-family: 'Courier New', monospace;
-        }
-
-        /* Buttons Section */
-        .buttons {
-            display: flex;
-            gap: 30px;
-            flex-wrap: wrap;
-            margin-top: auto;
-            padding-top: 30px;
-            border-top: 1px solid rgba(0, 0, 0, 0.05);
-            position: relative;
-            z-index: 1;
-        }
-
-        .btn {
-            padding: 14px 40px;
-            font-size: 16px;
-            font-weight: 600;
-            letter-spacing: 1px;
-            cursor: pointer;
-            border: 2px solid;
-            border-radius: 4px;
-            transition: all 0.3s ease;
-            background: transparent;
-            font-family: 'Segoe UI', sans-serif;
-            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
-        }
-
-        .btn-about {
-            color: #3A3A3A;
-            border-color: #3A3A3A;
-        }
-
-        .btn-about:hover {
-            background: #f0f0f0;
-            box-shadow: 0 6px 16px rgba(0, 0, 0, 0.12);
-            transform: translateY(-2px);
-        }
-
-        .btn-play {
-            color: white;
-            background: #E63B7D;
-            border-color: #E63B7D;
-        }
-
-        .btn-play:hover {
-            background: #d92968;
-            border-color: #d92968;
-            box-shadow: 0 6px 16px rgba(230, 59, 125, 0.3);
-            transform: translateY(-2px);
-        }
-
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 30px 20px;
-            position: relative;
-            z-index: 1;
-            background: rgba(255, 255, 255, 0.3);
-        }
-
-        .footer-line {
-            font-size: 14px;
-            color: #666;
-            line-height: 1.8;
-            font-weight: 500;
-        }
-
-        /* Modal/Popup Styles */
-        #aboutModal {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            left: 0;
-            top: 0;
-            width: 100%;
-            height: 100%;
-            background-color: rgba(0, 0, 0, 0.5);
-            justify-content: center;
-            align-items: center;
-        }
-
-        #aboutModal.active {
-            display: flex;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
-
-        .modal-content {
-            background-color: white;
-            padding: 50px 40px;
-            border-radius: 12px;
-            max-width: 600px;
-            width: 90%;
-            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-            animation: slideUp 0.3s ease;
-            position: relative;
-            z-index: 1001;
-        }
-
-        @keyframes slideUp {
-            from {
-                transform: translateY(50px);
-                opacity: 0;
-            }
-            to {
-                transform: translateY(0);
-                opacity: 1;
-            }
-        }
-
-        .modal-tag {
-            font-family: 'Courier New', monospace;
-            color: #3A3A3A;
-            font-size: 14px;
-            font-weight: 600;
-            display: block;
-            margin-bottom: 20px;
-        }
-
-        .modal-text {
-            font-family: 'Segoe UI', sans-serif;
-            color: #3A3A3A;
-            font-size: 16px;
-            line-height: 1.8;
-            margin-bottom: 16px;
-        }
-
-        .modal-highlight {
-            color: #D4A574;
-            font-weight: 700;
-        }
-
-        .modal-close {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
-            font-family: 'Courier New', monospace;
-            font-size: 14px;
-            color: #3A3A3A;
-            cursor: pointer;
-            text-decoration: none;
-            font-weight: 600;
-            transition: color 0.3s ease;
-        }
-
-        .modal-close:hover {
-            color: #E63B7D;
-            text-decoration: underline;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .title-line-1 {
-                font-size: 24px;
-            }
-
-            .title-line-2 {
-                font-size: 64px;
-            }
-
-            .title-line-3,
-            .title-line-4 {
-                font-size: 48px;
-            }
-
-            .tagline-line-1 {
-                font-size: 16px;
-            }
-
-            .tagline-line-2 {
-                font-size: 14px;
-            }
-
-            .buttons {
-                gap: 15px;
-            }
-
-            .btn {
-                padding: 12px 32px;
-                font-size: 14px;
-            }
-
-            .modal-content {
-                padding: 40px 30px;
-            }
-        }
-
-        @media (max-width: 480px) {
-            .main-content {
-                padding: 40px 20px;
-            }
-
-            .title-line-1 {
-                font-size: 18px;
-            }
-
-            .title-line-2 {
-                font-size: 44px;
-            }
-
-            .title-line-3,
-            .title-line-4 {
-                font-size: 36px;
-            }
-
-            .tagline-line-1 {
-                font-size: 14px;
-            }
-
-            .tagline-line-2 {
-                font-size: 12px;
-            }
-
-            .buttons {
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            .btn {
-                width: 100%;
-                max-width: 250px;
-            }
-
-            .modal-content {
-                padding: 30px 20px;
-                width: 95%;
-            }
-
-            .modal-text {
-                font-size: 14px;
-            }
-        }
-    </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Coding: Don't Panic, It's Just Text.</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@700;800;900&family=JetBrains+Mono:wght@700;800&display=swap" rel="stylesheet">
+<script src="https://cdn.tailwindcss.com"></script>
+<style>
+  body { font-family:'Inter',sans-serif; background:#FFF; overflow-x:hidden; }
+  .mono { font-family:'JetBrains Mono',monospace; }
+  body::before{content:"";position:fixed;inset:0;pointer-events:none;z-index:0;opacity:0.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");}
+  .ghost{position:absolute;font-family:'JetBrains Mono',monospace;font-weight:800;letter-spacing:-0.04em;pointer-events:none;user-select:none;line-height:0.9;}
+  @keyframes blink{0%,49%{opacity:1}50%,100%{opacity:0}}
+  .line-row{display:block; min-height:0.95em; line-height:0.9;}
+  .wrap{position:relative; display:inline-block; padding-right:8px;}
+  .blink-cursor{position:absolute; left:100%; top:50%; transform:translateY(-45%); width:3px; height:0.9em; background:#999; animation:blink 0.9s infinite; pointer-events:none;}
+</style>
 </head>
-<body>
-    <!-- Background Code Snippets -->
-    <div class="background-code" id="backgroundCode"></div>
+<body class="relative min-h-screen flex flex-col">
+<div class="pointer-events-none select-none absolute inset-0 overflow-hidden z-0">
+  <span class="ghost" style="left:4%; top:8%; font-size:42px; transform:rotate(-8deg);"><span style="color:rgba(158,158,158,0.18)">&lt;</span><span style="color:rgba(35,140,255,0.18)">html</span><span style="color:rgba(158,158,158,0.18)">&gt;</span></span>
+    <span class="ghost" style="left:62%; top:14%; font-size:36px; transform:rotate(6deg);"><span style="color:rgba(35,140,255,0.18)">body</span><span style="color:rgba(158,158,158,0.18)"> {</span></span>
+   <span class="ghost" style="left:12%; top:48%; font-size:40px;"><span style="color:rgba(158,158,158,0.18)">&lt;</span><span style="color:rgba(35,140,255,0.18)">div</span> <span style="color:rgba(255,210,63,0.18)">class</span><span style="color:rgba(158,158,158,0.18)">=</span><span style="color:rgba(255,107,157,0.18)">"go"</span><span style="color:rgba(158,158,158,0.18)">&gt;</span></span>
+   <span class="ghost" style="left:68%; top:58%; font-size:30px; transform:rotate(-3deg); color:rgba(255,107,157,0.16);">color: #FFD23F;</span>
+   <span class="ghost" style="left:8%; top:82%; font-size:32px;"><span style="color:rgba(158,158,158,0.16)">&lt;/</span><span style="color:rgba(35,140,255,0.16)">body</span><span style="color:rgba(158,158,158,0.16)">&gt;</span></span>
+</div>
 
-    <!-- Main Content -->
-    <div class="main-content">
-        <!-- Title -->
-        <div class="title">
-            <div class="title-line title-line-1">Coding:</div>
-            <div class="title-line title-line-2">DON'T PANIC,</div>
-            <div class="title-line title-line-3">It's Just</div>
-            <div class="title-line title-line-4">Text!</div>
-        </div>
+<main class="flex-1 flex flex-col w-[90vw] mx-auto max-w-[720px] relative z-10 pt-[52px]">
+  <h1 class="font-black tracking-[-0.04em] leading-[0.85] text-[#111]" style="font-size:clamp(38px,8.5vw,74px);">
+    <div class="line-row"><span class="wrap" id="wrap1"><span id="line1" style="font-size:1em; color:#6366f1; font-family: ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing:-0.02em; display:inline; line-height:1.1;"></span><span id="cursor" class="blink-cursor"></span></span></div>
+    <div class="line-row"><span class="wrap" id="wrap2"><span id="line2" style="font-size:1.6em; color:#ff1493; display:inline; line-height:1.1;"></span></span></div>
+    <div class="line-row"><span class="wrap" id="wrap3"><span id="line3" style="font-size:1.4em; color:#00c2d1; display:inline; line-height:1.1;"></span></span></div>
+    <div class="line-row"><span class="wrap" id="wrap4"><span id="line4" style="font-size:1.4em; color:#ffc800; display:inline; line-height:1.1;"></span></span></div>
+  </h1>
 
-        <!-- Tagline -->
-        <div class="tagline">
-            <div class="tagline-line-1">A starter kit to understand coding</div>
-            <div class="tagline-line-2">HTML is structure. CSS is style. JS is brain.</div>
-        </div>
+  <div id="tagline-wrap" style="opacity:0; transform:translateY(16px); transition:all 0.7s ease 0.1s;">
+    <p class="mt-6 font-bold text-[#111] max-w-[560px]" style="font-size:18px; letter-spacing:-0.02em; line-height:1.35;">A starter kit to understand coding.</p>
+    <p class="mono text-[12px] font-bold text-[#6B7280] tracking-[-0.01em] leading-[1.5] max-w-[90vw] mt-3">HTML is structure. CSS is style. JS is brain.</p>
+  </div>
+  <div class="flex-1 min-h-[40px]"></div>
+  <div id="buttons" class="pb-[88px] flex flex-col sm:flex-row gap-3 justify-center items-center" style="opacity:0; transform:translateY(16px); transition:all 0.7s ease 0.35s;">
+    <button id="aboutBtn" class="mono rounded-full border border-[#EEEEEE] bg-white px-[26px] py-[14px] text-[13px] font-extrabold uppercase tracking-[0.04em] text-black shadow-[0_2px_12px_rgba(0,0,0,0.06)] w-full max-w-[320px] sm:w-auto">About</button>
+    <a href="plays.html" class="rounded-full bg-[#FF1493] px-[26px] py-[14px] text-[13px] font-extrabold uppercase tracking-[0.04em] text-white text-center w-full max-w-[320px] sm:w-auto">Let's Play!</a>
+  </div>
+</main>
 
-        <!-- Buttons -->
-        <div class="buttons">
-            <button class="btn btn-about" onclick="openAbout()">ABOUT</button>
-            <button class="btn btn-play" onclick="location.href='contents.html'">LET'S PLAY</button>
-        </div>
-    </div>
+<footer class="relative z-10 mt-auto pb-[18px]"><div class="flex justify-center"><div class="w-[90vw] h-[1px] bg-[#F0F0F0]"></div></div><div class="w-[90vw] mx-auto pt-[14px] flex flex-col items-center gap-[8px] text-center"><span class="inline-flex items-center rounded-[4px] bg-[#FFD23F] px-[6px] py-[2px] text-[11px] font-black text-black">#MyFirstWebsite</span><div class="text-[#111] font-bold tracking-[0.08em] uppercase text-[10px]">GOODWALL X GITHUB</div><a href="https://github.com/siEpan" target="_blank" class="mono text-[10px] font-bold text-[#999] underline underline-offset-[3px]">@siEpan — github.com/siEpan</a></div></footer>
 
-    <!-- About Modal -->
-    <div id="aboutModal">
-        <div class="modal-content">
-            <span class="modal-tag">&lt;about&gt;</span>
-            
-            <p class="modal-text">Made with curiosity by a first-time builder</p>
-            
-            <p class="modal-text">This site proves coding is just text with colors. No magic: just text + boxes + colors + brain.</p>
-            
-            <p class="modal-text">This site will let you play with HTML, CSS and JavaScript.</p>
-            
-            <p class="modal-text">Built for <span class="modal-highlight">#MyFirstWebsite</span> - a project on GOODWALL X GITHUB.</p>
-            
-            <span class="modal-tag">&lt;/about&gt;</span>
-            
-            <a class="modal-close" onclick="closeAbout()">close</a>
-        </div>
-    </div>
+<div id="about-modal" style="position:fixed; inset:0; z-index:50; display:flex; align-items:center; justify-content:center; padding:5vw; opacity:0; pointer-events:none;">
+<div id="about-backdrop" style="position:absolute; inset:0; background:rgba(0,0,0,0.1); backdrop-filter:blur(8px);"></div>
+<div id="about-card" style="position:relative; width:100%; max-width:520px; border-radius:32px; border:1px solid #F0F0F0; background:white; padding:32px; box-shadow:0 20px 60px rgba(0,0,0,0.12); opacity:0; transform:translateY(18px) scale(0.97); transition:opacity 0.4s ease, transform 0.4s cubic-bezier(0.16,1,0.3,1);"><div class="mono" style="font-size:16px; font-weight:800; color:#00C2D1; margin-bottom:18px;">&lt;about&gt;</div><p style="font-size:18px; font-weight:600; line-height:1.5; color:black; margin-bottom: 16px;">Made with curiosity by a first-time builder.</p><p style="font-size:18px; font-weight:500; line-height:1.5; color:black; margin-bottom:16px;">This site proves coding is just text with colors. No magic, just boxes + colors + brain.</p><p style="font-size:18px; font-weight:600; line-height:1.5; color:black;">This site will let you play with HTML,CSS and JavaScript.</p><p class="mono" style="font-size:12px; font-style:italic; color:#9CA3AF; margin-bottom:20px;">P.S. Python? Let's keep it in the wildlife 🐍</p><p style="font-size:18px; font-weight:500; line-height:1.5; color:black; margin-bottom:16px;">Built for <span style="display:inline-flex; border-radius:4px; background:#FFD23F; padding:2px 6px; font-size:13px; font-weight:900;">#MyFirstWebsite</span> — a project on GOODWALL x GitHub.</p><div class="mono" style="margin-top:24px; font-size:16px; font-weight:800; color:#00C2D1;">&lt;/about&gt;</div><div style="margin-top:20px;"><button id="closeAbout" class="mono" style="font-size:12px; font-weight:700; text-transform:uppercase; letter-spacing:0.08em;">→ Close</button></div></></div></>
 
-    <!-- Footer -->
-    <footer>
-        <div class="footer-line">#MyFirstWebsite</div>
-        <div class="footer-line">GOODWALL X GITHUB</div>
-        <div class="footer-line">siEpan</div>
-    </footer>
-
-    <script>
-        // Background Code Snippets
-        const codeSnippets = [
-            'console.log()',
-            '<h1>Hello</h1>',
-            'color: blue;',
-            'function() {}',
-            'background: #fff;',
-            '<div>Box</div>',
-            'const x = 5;',
-            'text-align: center;',
-            'if (true) {}',
-            '<span>Text</span>',
-            'margin: 10px;',
-            'return value;',
-            '<body></body>',
-            'display: flex;',
-            'alert("Hi!");',
-            'padding: 20px;',
-            '<p>Paragraph</p>',
-            'let name = "";',
-            'border: 1px;',
-            'querySelector()'
-        ];
-
-        const colors = ['#D4A574', '#4B3B8C', '#E63B7D', '#00BCD4'];
-        const fontSizes = [16, 18, 20, 22, 24, 26];
-
-        function generateBackgroundCode() {
-            const container = document.getElementById('backgroundCode');
-            if (!container) return;
-            
-            const positions = [
-                { top: '10%', left: '5%', rotate: -15 },
-                { top: '15%', left: '85%', rotate: 20 },
-                { top: '35%', left: '10%', rotate: 25 },
-                { top: '45%', left: '80%', rotate: -30 },
-                { top: '60%', left: '8%', rotate: 10 },
-                { top: '70%', left: '75%', rotate: -20 },
-                { top: '25%', left: '50%', rotate: 35 },
-                { top: '55%', left: '45%', rotate: -25 },
-                { top: '80%', left: '15%', rotate: 15 },
-                { top: '40%', left: '70%', rotate: -35 }
-            ];
-
-            positions.forEach((pos, index) => {
-                const snippet = document.createElement('div');
-                snippet.className = 'code-snippet';
-                snippet.textContent = codeSnippets[index % codeSnippets.length];
-                snippet.style.top = pos.top;
-                snippet.style.left = pos.left;
-                snippet.style.transform = `rotate(${pos.rotate}deg)`;
-                snippet.style.color = colors[index % colors.length];
-                snippet.style.fontSize = fontSizes[index % fontSizes.length] + 'px';
-                container.appendChild(snippet);
-            });
-        }
-
-        // Modal Functions
-        function openAbout() {
-            document.getElementById('aboutModal').classList.add('active');
-        }
-
-        function closeAbout() {
-            document.getElementById('aboutModal').classList.remove('active');
-        }
-
-        // Close modal when clicking outside
-        document.getElementById('aboutModal').addEventListener('click', function(e) {
-            if (e.target === this) {
-                closeAbout();
-            }
-        });
-
-        // Generate background code when page loads
-        window.onload = function() {
-            generateBackgroundCode();
-        };
-    </script>
+<script>
+  const speed1=120, speed2=140, speed3=120, speed4=220;
+  const text1="Coding:", text2="Don't Panic,", text3="It's Just"; text4="Text!"
+  let i=0,j=0,k=0;l=0
+  const el1=document.getElementById("line1"), el2=document.getElementById("line2"), el3=document.getElementById("line3"), el4=document.getElementById("line4"),cursor=document.getElementById("cursor");
+  const wrap1=document.getElementById("wrap1"), wrap2=document.getElementById("wrap2"), wrap3=document.getElementById("wrap3"),wrap4=document.getElementById("wrap4") ;
+  function type1(){ if(i<text1.length){ el1.textContent+=text1.charAt(i); i++; setTimeout(type1,speed1);} else { wrap2.appendChild(cursor); cursor.style.fontSize=el2.style.fontSize; setTimeout(type2,260); } }
+  function type2(){ if(j<text2.length){ el2.textContent+=text2.charAt(j); j++; setTimeout(type2,speed2);} else { wrap3.appendChild(cursor); cursor.style.fontSize=el3.style.fontSize; setTimeout(type3,280); } }
+  function type3(){ if(k<text3.length){ el3.textContent+=text3.charAt(k); k++; setTimeout(type3,speed3);} else { wrap4.appendChild(cursor); cursor.style.fontSize=el4.style.fontSize; setTimeout(type4,280); } }
+  function type4(){ if(l<text4.length){ el4.textContent+=text4.charAt(l); l++; setTimeout(type4,speed3);} else setTimeout(()=>{ document.getElementById("tagline-wrap").style.opacity="1"; document.getElementById("tagline-wrap").style.transform="translateY(0)"; document.getElementById("buttons").style.opacity="1"; document.getElementById("buttons").style.transform="translateY(0)"; cursor.style.display="inline-block"; },400); }
+  type1();
+  const modal=document.getElementById("about-modal"), aboutBtn=document.getElementById("aboutBtn"), closeBtn=document.getElementById("closeAbout"), backdrop=document.getElementById("about-backdrop"), card=document.getElementById("about-card");
+  function openAbout(){
+  modal.style.display='flex'; void modal.offsetWidth;
+  modal.style.opacity='1'; modal.style.pointerEvents='auto';
+  document.getElementById("about-card").style.opacity='1';
+  document.getElementById("about-card").style.transform='translateY(0) scale(1)';
+  document.body.style.overflow='hidden';
+}
+function closeAboutFunc(){
+  modal.style.opacity='0';
+  document.getElementById("about-card").style.opacity='0';
+  document.getElementById("about-card").style.transform='translateY(18px) scale(0.97)';
+  modal.style.pointerEvents='none'; document.body.style.overflow='';
+  setTimeout(()=>{ if(modal.style.opacity==='0') modal.style.display='none'; },400);
+  }
+  aboutBtn.addEventListener("click", openAbout);
+closeBtn.addEventListener("click", closeAboutFunc);
+backdrop.addEventListener("click", closeAboutFunc);
+</script>
 </body>
 </html>
